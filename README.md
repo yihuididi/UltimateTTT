@@ -113,7 +113,7 @@ class Heuristic(nn.Module):
 - **`data.pkl`** — The original dataset provided by the CS2109S team.
 - **`data.py`** — Script to augment the dataset by applying rotations and flips to generate more training examples.
 - **`training.ipynb`** — Notebook showing the model training process after data augmentation.
-- **`baseline.py`** — A simple baseline DNN model that flattens the entire board state into 132 features and trains on that.
+- **`baseline.py`** — A simple baseline DNN model that flattens the entire board state into 93 features and trains on that.
 - **`student.py`** — The code for my winning submission implementing the described heuristic and minimax strategy.
 
 ## Results

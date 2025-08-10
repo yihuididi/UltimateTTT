@@ -2,13 +2,11 @@
 
 This project was my winning entry among over 200 students in a mini contest during the CS2109S course (Academic Year 2425 Semester 2), where students built AI agents to compete in Ultimate Tic Tac Toe.
 
----
+![Contest Results](screenshot.png)
 
 ## Overview
 
 My agent uses a **Minimax search with iterative deepening** combined with a learned heuristic to evaluate board states efficiently under strict time constraints (3 seconds per move). The core challenge was to balance computational cost with predictive accuracy to select the best move.
-
----
 
 ## Strategy
 
@@ -18,8 +16,6 @@ My agent uses a **Minimax search with iterative deepening** combined with a lear
 - **Heuristic Model:**  
   Instead of a monolithic neural net, I designed a hierarchical model that predicts the status of each of the 9 local boards individually, then aggregates these to estimate the global board outcome. This reduces the number of trainable parameters and computational overhead, allowing deeper and faster search within the time limit.
 
----
-
 ## Data Preparation
 
 - The provided dataset contains board states annotated with `fill_num` to indicate the next player to move.
@@ -27,8 +23,6 @@ My agent uses a **Minimax search with iterative deepening** combined with a lear
 - To reduce model complexity and improve generalization, I **standardized all board states to assume player 1’s turn by inverting boards where `fill_num` = 2** (switching player 1 and player 2 markers).
 
 - To augment data, I used **rotations and flips** of each board state to increase dataset size and variability.
-
----
 
 ## Feature Extraction
 
@@ -112,13 +106,21 @@ class Heuristic(nn.Module):
         return torch.tanh(self.fc4(x))
 ```
 
+## Usage Instructions
+
+- **`mini-project.ipynb`** — Overview of the game rules and basic exploration.
+- **`utils.py`** — Common utility functions for editing and manipulating board states.
+- **`data.pkl`** — The original dataset provided by the CS2109S team.
+- **`data.py`** — Script to augment the dataset by applying rotations and flips to generate more training examples.
+- **`training.ipynb`** — Notebook showing the model training process after data augmentation.
+- **`baseline.py`** — A simple baseline DNN model that flattens the entire board state into 132 features and trains on that.
+- **`student.py`** — The code for my winning submission implementing the described heuristic and minimax strategy.
+
 ## Results
 
 - The approach enabled efficient evaluation of complex board states within the 3-second move limit.
 - Won first place out of over 200 competitors in the CS2109S Ultimate Tic Tac Toe mini contest.
 - The modular and parameter-efficient model facilitated faster training and inference during competition.
-
----
 
 ## Acknowledgements
 
